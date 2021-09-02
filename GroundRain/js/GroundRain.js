@@ -44,7 +44,9 @@ for (let i = 0; i < 200; i++) { //creates 200 rain drop instances
     rainArray[i] = new Rain(800 * Math.random(), -100, 10, Math.random())
 }
 
-var groundBlue = 120; //sets the starting Blue value for the ground's RGB
+var groundBlue = 5; //sets the starting Blue value for the ground's RGB
+
+var dropsHit = 0; //tracks how many drops have hit the ground so far
 
 function setup() {  // Creates the canvas
 
@@ -58,7 +60,7 @@ function draw() {
 
     let rainColor = color(20, 20, 200) //controls rain color, used later down in the for loop
 
-    let groundColor = color(100,100,groundBlue); //sets ground color
+    let groundColor = color('rgb(0%, 0%, ' + groundBlue + '%)'); //sets ground color
 
     var myGround = new Ground(0, 450, 800, 150, groundColor); //creates an instance of the ground, but doesn't draw it to the canvas. That happens right at the bottom. This is kept in the draw function so that the color can be continuously updated. Also because things broke if I moved it outside of draw.
 
@@ -69,8 +71,13 @@ function draw() {
     if (rainArray[i].y > 450) { //if the rain is low enough, does a whole slew of things. Elaborated on below
         rainArray[i].speed = 10 * Math.random(); //Starts by re-randomizing the rain's speed, which isn't necessary per se, but stops the same patterns from constantly repeating. 
         rainArray[i].y = -500; //It then moves the rain above the canvas, as a sort of shortcut instead of creating new rain; in theory I could change the x value here to and get the same effect as creating new rain, but I think it looks nice as-is.
-        groundBlue+=0.2; //Finally, makes the ground more blue.
+        dropsHit += 1; //adds +1 to the count of drops hitting the ground
     }
+    }
+
+    if (dropsHit >= 10) {
+        groundBlue+=0.5; //makes the ground more blue.
+        dropsHit = 0; //resets count of drops that have hit the ground
     }
 
     myGround.create(); //draws the ground itself. Kept at the bottom to ensure that it's only drawn after the color has been updated.
