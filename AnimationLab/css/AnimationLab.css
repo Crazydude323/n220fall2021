@@ -1,0 +1,51 @@
+.title {
+    opacity: 0%;
+    color: navy;
+}
+
+.bRect {
+    opacity: 0%;
+    height: 100px;
+    width: 99%;
+    background-color: navy;
+    position: absolute;
+    top: 80px;
+}
+
+.pRect {
+    opacity: 0%;
+    height: 120px;
+    width: 250px;
+    background-color: purple;
+    position: absolute;
+}
+
+#tl {
+    left: 230px;
+    top: 200px;
+}
+
+#tm {
+    left: 500px;
+    top: 200px;
+}
+
+#tr {
+    left: 770px;
+    top: 200px;
+}
+
+#bl {
+    left: 230px;
+    top: 340px;
+}
+
+#bm {
+    left: 500px;
+    top: 340px;
+}
+
+#br {
+    left: 770px;
+    top: 340px;
+}
